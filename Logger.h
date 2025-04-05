@@ -110,21 +110,21 @@ private:
  * 自动捕获__FILE__和__LINE__
  * log_info << "Received " << n << " bytes";
 */
-#define log_debug \                                                                             
-if(mymuduo::Loglevel::DEBUG >= mymuduo::AsyncLogger::instance().getLogLevel()) \                                                                            
+#define log_debug \
+if(mymuduo::Loglevel::DEBUG >= mymuduo::AsyncLogger::instance().getLogLevel()) \
     mymuduo::Logger(__FILE__,__LINE__,mymuduo::DEBUG).stream()                                                                                              
 
-#define log_info \                                                                                
-if(mymuduo::Loglevel::INFO >= mymuduo::AsyncLogger::instance().getLogLevel()) \                                                                           
+#define log_info \
+if(mymuduo::Loglevel::INFO >= mymuduo::AsyncLogger::instance().getLogLevel()) \
     mymuduo::Logger(__FILE__,__LINE__,mymuduo::INFO).stream()                                                                                          
 
-#define log_warn \                                                                              
+#define log_warn \
 mymuduo::Logger(__FILE__,__LINE__,mymuduo::WARN).stream()                       
 
-#define log_error \                                                                               
+#define log_error \
 mymuduo::Logger(__FILE__,__LINE__,mymuduo::ERROR).stream()                      
 
-#define log_fatal \                                                                                 
+#define log_fatal \
 mymuduo::Logger(__FILE__,__LINE__,mymuduo::FATAL).stream()                      
 
 } // namespace mymuduo

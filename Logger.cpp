@@ -126,6 +126,12 @@ Logger::~Logger()
     {
         m_stream << "\n";
         AsyncLogger::instance().append(m_stream.str());
+        if(m_level == FATAL)
+        {
+            //停止异步日志系统，确保所有日志被刷新
+            AsyncLogger::instance().stop();
+            std::exit(EXIT_FAILURE);
+        }
     }
 }
 

@@ -36,7 +36,7 @@ public:
 
     int fd() const { return m_fd; }
     int events() const { return m_events; }
-    int setRevents(int revt) { m_revents = revt; }
+    void setRevents(int revt) { m_revents = revt; }
 
     // 设置fd相应的事件状态
     void enableReading() { m_events |= kReadEvent;
@@ -49,7 +49,7 @@ public:
         update();
     }
     void disableWriting() { m_events &= ~kWriteEvent;
-        update;
+        update();
     }
     void disableAll() { m_events = kNoneEvent;
         update();
@@ -74,11 +74,11 @@ private:
     static const int kReadEvent;
     static const int kWriteEvent;
 
-    EventLoop *m_loop;     //事件循环
-    const int m_fd;       //fd，poller监听的对象
-    int m_events;         //注册fd感兴趣的事件
-    int m_revents;       //poller返回的具体发生的事件
-    int m_index;
+    EventLoop *m_loop;     // 事件循环
+    const int m_fd;        // fd，poller监听的对象
+    int m_events;          // 注册fd感兴趣的事件
+    int m_revents;         // poller返回的具体发生的事件
+    int m_index;           // 是否绑定到POller的标志位
 
     std::weak_ptr<void> m_tie;
     bool m_tied;
