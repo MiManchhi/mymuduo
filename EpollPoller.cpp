@@ -17,7 +17,7 @@ constexpr int kAdded = 1;
 constexpr int kDeleted = 2;
 
 //epoll_cretae
-EpollPoller::EpollPoller(Eventloop *loop)
+EpollPoller::EpollPoller(EventLoop *loop)
     : Poller(loop)
     , m_epollfd(::epoll_create1(EPOLL_CLOEXEC))
     , m_events(kInitEventListSize)

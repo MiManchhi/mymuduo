@@ -1,11 +1,10 @@
+#pragma once
+
 #include <vector>
 #include <unordered_map>
 
 #include "noncopyable.h"
 #include "Timestamp.h"
-
-class Channel;
-class Eventloop;
 
 /**
  * 
@@ -16,12 +15,14 @@ class Eventloop;
 
 namespace mymuduo
 {
+class Channel;
+class EventLoop;
 class Poller : noncopyable
 {
 public:
     using ChannelList = std::vector<Channel *>;
 
-    Poller(Eventloop *loop);
+    Poller(EventLoop *loop);
     virtual ~Poller() = default;
 
     //给所有IO复用保留统一的接口
@@ -33,7 +34,7 @@ public:
     bool hasChannel(Channel *channel) const;
 
     //EventLoop可以通过该接口获取默认的IO复用的具体实现
-    static Poller *newDefaultPoller(Eventloop *loop);
+    static Poller *newDefaultPoller(EventLoop *loop);
 
 protected:
     //map的key是sockfd  value是所属的channel通道类型   用于快速查找sockfd对应的channel
@@ -41,6 +42,6 @@ protected:
     ChannelMap m_channelMap;
 
 private:
-    Eventloop *m_ownerLoop;   //Poller所属的事件循环
+    EventLoop *m_ownerLoop;   //Poller所属的事件循环
 };
 } // namespace mymuduo

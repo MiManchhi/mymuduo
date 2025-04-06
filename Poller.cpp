@@ -3,7 +3,7 @@
 
 namespace mymuduo
 {
-Poller::Poller(Eventloop *loop) : m_ownerLoop(loop)
+Poller::Poller(EventLoop *loop) : m_ownerLoop(loop)
 {
 }
 

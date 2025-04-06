@@ -40,10 +40,13 @@ void Channel::tie(const std::shared_ptr<void> &ptr)
 }
 
 //通过channel所属的EventLoop中，把当前的channel删除掉
+void Channel::remove()
+{
+    m_loop->removeChannel(this);
+}
 void Channel::update()
 {
-    // add code
-    // m_loop->removeChannel(this);
+    m_loop->updateChannel(this);
 }
 //根据poller通知的channel发生的具体事件，有channel负责调用具体的回调操作
 void Channel::handleEventWithGuard(Timestamp receiveTime)

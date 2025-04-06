@@ -1,3 +1,5 @@
+#pragma once
+
 #include <vector>
 #include <sys/epoll.h>
 
@@ -9,7 +11,7 @@ namespace mymuduo
 class EpollPoller : public Poller
 {
 public:
-    EpollPoller(Eventloop *loop);
+    EpollPoller(EventLoop *loop);
     ~EpollPoller() override;
 
     // 重写Poller的纯虚函数

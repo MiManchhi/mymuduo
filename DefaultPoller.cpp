@@ -6,7 +6,7 @@
 namespace mymuduo
 {
 //EventLoop可以通过该接口获取默认的IO复用的具体实现
-Poller *Poller::newDefaultPoller(Eventloop *loop)
+Poller *Poller::newDefaultPoller(EventLoop *loop)
 {
     if(::getenv("MYMUDUO_USE_POLL"))
     {
@@ -14,7 +14,7 @@ Poller *Poller::newDefaultPoller(Eventloop *loop)
     }
     else
     {
-        return nullptr; // 生成epoll实例
+        return new EpollPoller(loop); // 生成epoll实例
     }
 }
 } //namespace mymuduo
